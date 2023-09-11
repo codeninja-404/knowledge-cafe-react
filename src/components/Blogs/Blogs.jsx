@@ -8,7 +8,13 @@ const Blogs = () => {
       .then((res) => res.json())
       .then((data) => setBlogs(data));
   }, []);
-  return <div></div>;
+  return (
+    <div className="md:w-2/3">
+      {
+        blogs.map(blog=><h1>hi</h1>)
+      }
+    </div>
+  );
 };
 
 export default Blogs;
