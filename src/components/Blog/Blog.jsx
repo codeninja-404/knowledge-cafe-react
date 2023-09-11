@@ -1,8 +1,48 @@
 import PropTypes from "prop-types";
 const Blog = ({ blog }) => {
+  const {
+    cover,
+    title,
+    author_img,
+    author,
+    posted_date,
+    reading_time,
+    hashtags,
+  } = blog;
   return (
-    <div>
-      <h1>hwllo from blog</h1>
+    <div className="border-b lg:border-b-2 border-gray-400 mb-8">
+      <div className=" mb-4 card  ">
+        <figure className="rounded-lg">
+          <img src={cover} alt="Shoes" className=" w-full" />
+        </figure>
+
+        <div className=" ">
+          <div className="py-4 flex justify-between">
+            <div className="flex items-center gap-2">
+              <div className="w-11 md:w-14 rounded-full">
+                <img src={author_img} />
+              </div>
+              <div className="flex flex-col">
+                <p className="font-bold">{author}</p>
+                <p>{posted_date}</p>
+                
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <p>{reading_time} min read</p>
+              <button className="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-gray-700 rounded-full hover:bg-green-500 ">+</button>
+            </div>
+          </div>
+          <div className="space-y-4">
+          <p className="text-xl font-bold">{title}</p>
+          <div className="flex gap-2">
+            {hashtags.map((tag) => (
+              <p key={tag}>#{tag}</p>
+            ))}
+          </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
