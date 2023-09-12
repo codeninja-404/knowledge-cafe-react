@@ -10,6 +10,7 @@ const Blog = ({ blog, handleAddToBookmark, handleMarkAsRead }) => {
     posted_date,
     reading_time,
     hashtags,
+    id,
   } = blog;
   return (
     <div className="border-b lg:border-b-2 border-gray-400 mb-8">
@@ -49,7 +50,7 @@ const Blog = ({ blog, handleAddToBookmark, handleMarkAsRead }) => {
             <button
               className="border-b-2 font-semibold border-blue-600 text-blue-600"
               onClick={() => {
-                handleMarkAsRead(blog?.reading_time);
+                handleMarkAsRead(id,reading_time);
               }}
             >
               Mark As Read
