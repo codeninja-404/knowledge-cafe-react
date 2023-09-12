@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
-const Blog = ({ blog }) => {
+import { FaBookmark } from "react-icons/fa";
+
+const Blog = ({ blog, handleAddToBookmark, handleMarkAsRead }) => {
   const {
     cover,
     title,
@@ -25,21 +27,33 @@ const Blog = ({ blog }) => {
               <div className="flex flex-col">
                 <p className="font-bold">{author}</p>
                 <p>{posted_date}</p>
-                
               </div>
             </div>
             <div className="flex items-center gap-2">
               <p>{reading_time} min read</p>
-              <button className="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-gray-700 rounded-full hover:bg-green-500 ">+</button>
+              <button
+                onClick={() => handleAddToBookmark(blog)}
+                className="px-2 py-1  font-medium text-center inline-flex items-center text-gray-700 rounded-full hover:text-green-500 "
+              >
+                <FaBookmark></FaBookmark>
+              </button>
             </div>
           </div>
           <div className="space-y-4">
-          <p className="text-xl font-bold">{title}</p>
-          <div className="flex gap-2">
-            {hashtags.map((tag) => (
-              <p key={tag}>#{tag}</p>
-            ))}
-          </div>
+            <p className="text-xl font-bold">{title}</p>
+            <div className="flex gap-2">
+              {hashtags.map((tag, idx) => (
+                <p key={idx}>#{tag}</p>
+              ))}
+            </div>
+            <button
+              className="border-b-2 font-semibold border-blue-600 text-blue-600"
+              onClick={() => {
+                handleMarkAsRead(blog?.reading_time);
+              }}
+            >
+              Mark As Read
+            </button>
           </div>
         </div>
       </div>
@@ -49,5 +63,7 @@ const Blog = ({ blog }) => {
 
 Blog.propTypes = {
   blog: PropTypes.object.isRequired,
+  handleAddToBookmark: PropTypes.func.isRequired,
+  handleMarkAsRead: PropTypes.func.isRequired,
 };
 export default Blog;
